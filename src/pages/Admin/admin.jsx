@@ -43,13 +43,11 @@ export const Admin = () => {
     try {
       const url = `${BASE_URL}/order/${action}_order/${id}?token=${token}`;
       const response = await fetch(url, { method: "POST" });
-      if (!response.ok) throw new Error(`Erro ao ${action} pedido`);
-      const data = await response.json();
-      if (data.detail) {
-        setFeedback({ type: "error", msg: data.detail });
-      } else {
-        setFeedback({ type: "success", msg: `Pedido ${action === "confirm" ? "aceito" : "recusado"} com sucesso!` });
+      if (!response.ok) {
+        const err = await response.json().catch(() => null);
+        throw new Error(err?.detail || `Erro ao ${action} pedido`);
       }
+      setFeedback({ type: "success", msg: `Pedido ${action === "confirm" ? "aceito" : "recusado"} com sucesso!` });
       buscaPedidos();
     } catch (error) {
       setFeedback({ type: "error", msg: error.message });
