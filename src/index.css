@@ -1,9 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-/* .btn {
-    @apply rounded-full border border-dourado-200 bg-gradient-to-b from-dourado-200 to-dourado-400 px-5 py-2 transition hover:contrast-200 text-dourado-900;
-    box-shadow: 0 1px 4px 1px theme(colors.dourado.200 / 25%), inset 0px -1px 2px theme(colors.dourado.200);
-  } */

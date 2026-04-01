@@ -20,8 +20,8 @@ export const Comprar = () => {
         const data = await response.json();
         const vendidos = data["cartelas"].map(cartela => cartela["number"]);
         setCartelasVendidas(vendidos);
-      } catch (error) {
-        console.error(error);
+      } catch {
+        // erro silencioso
       } finally {
         setLoading(false);
       }
@@ -85,7 +85,7 @@ export const Comprar = () => {
       </div>
 
       {loading ? (
-        <div className="w-8 h-8 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+        <div className="w-8 h-8 border-4 border-gray-300 border-t-roxo-200 rounded-full animate-spin"></div>
       ) : (
         <div className="grid grid-cols-10 max-sm:grid-cols-5 max-sm:p-2 p-4 overflow-auto gap-2 w-full">
           {Array.from({ length: 300 }, (_, i) => (
@@ -112,13 +112,6 @@ export const Comprar = () => {
 
 const RaffleNumber = ({ number, isSold, isSelected, toggleSelection }) => {
   return (
-    // <div
-    //   className={`px-6 py-2 flex items-center justify-center rounded-md text-white font-bold cursor-pointer 
-    //   ${isSold ? "bg-roxo-200/60 cursor-default" : isSelected ? "bg-dourado-900/75" : "bg-dourado-600/75  "}`}
-    //   onClick={() => !isSold && toggleSelection(number)}
-    // >
-    //   {number}
-    // </div>
     <div
       className={`px-6 py-2 flex items-center justify-center rounded-md text-white font-bold cursor-pointer 
       ${isSold ? "bg-red-600 cursor-default " : isSelected ? "bg-rosa-dark ring-2 ring-white/60" : "bg-rosa/75  "}`}

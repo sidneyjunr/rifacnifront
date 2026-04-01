@@ -17,6 +17,7 @@ export const TransactionPix = () => {
   const [nomeErro, setNomeErro] = useState("");
   const [telefoneErro, setTelefoneErro] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [erro, setErro] = useState("");
 
   const navigate = useNavigate();
 
@@ -96,9 +97,13 @@ export const TransactionPix = () => {
           ",",
           "%2C%20"
         )}%20com%20o%20nome%20do%20comprador%3A%20${nome}`;
+      } else {
+        const data = await response.json().catch(() => null);
+        setErro(data?.detail || "Erro ao criar pedido. Atualize a página e tente novamente.");
       }
-    } catch (error) {
-      console.error("Erro ao criar pedido:", error);
+    } catch {
+      setIsLoading(false);
+      setErro("Erro de conexão. Verifique sua internet e tente novamente.");
     }
   };
 
@@ -221,6 +226,9 @@ export const TransactionPix = () => {
             Ao finalizar o Pix, clique no botão abaixo e confirme o pagamento!
           </h3>
         </div>
+        {erro && (
+          <p className="text-red-500 font-semibold text-sm text-center mt-2 mx-4">{erro}</p>
+        )}
         <div className="w-1/2 mt-4">
           <button
             onClick={handleConfirmarPagamento}

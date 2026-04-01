@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const Consultar = () => {
-  // const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [numeros, setNumeros] = useState("");
@@ -43,8 +42,7 @@ export const Consultar = () => {
       } else {
         setNumeros(vendidos);
       };
-    } catch (error) {
-      console.error(error);
+    } catch {
       setErroConsulta("Erro na consulta. Tente novamente mais tarde.")
     } finally {
       setIsLoading(false);
@@ -87,17 +85,6 @@ export const Consultar = () => {
         onSubmit={handleSubmit}
         className="p-4 text-white flex flex-col gap-4 max-w-sm mx-auto"
       >
-        {/* <label htmlFor="name">Nome</label>
-        <input
-          id="name"
-          type="text"
-          value={name}
-          onChange={({ target }) => setName(target.value)}
-          className="px-4 py-2 rounded-lg text-black"
-          placeholder="Nome completo cadastrado no ponto"
-          required
-        /> */}
-
         <label htmlFor="tel">Telefone</label>
         <input
           type="tel"
